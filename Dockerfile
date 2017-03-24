@@ -1,6 +1,10 @@
 FROM gentoo/stage3-amd64-hardened
 MAINTAINER Marek Szuba <marecki@gentoo.org>
 
+# Make sure /etc/portage/package.keywords is a directory, not a file
+#  - certain tools implicitly assume this to be the case
+RUN [ "mkdir", "-p", "/etc/portage/package.keywords" ]
+
 # This make.conf enables various non-default features required for
 # ebuild stabilisation, and also disables default USE="bindist"
 COPY files/etc/portage/make.conf /etc/portage/
