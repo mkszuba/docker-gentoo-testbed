@@ -1,5 +1,5 @@
 FROM gentoo/stage3-amd64-hardened
-MAINTAINER Marek Szuba <marecki@gentoo.org>
+LABEL maintainer="Marek Szuba <marecki@gentoo.org>"
 
 # Make sure /etc/portage/package.keywords is a directory, not a file
 #  - certain tools implicitly assume this to be the case
