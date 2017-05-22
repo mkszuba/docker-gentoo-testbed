@@ -30,4 +30,6 @@ RUN [ "emerge", "--depclean" ]
 RUN [ "emerge", "app-editors/vim", "app-portage/eix", "app-portage/gentoolkit" ]
 RUN [ "eix-update" ]
 
+RUN [ "rm", "-rf", "/usr/portage/distfiles/*" ]
+
 CMD [ "/bin/bash" ]
