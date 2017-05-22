@@ -15,6 +15,8 @@ COPY files/etc/portage/make.conf /etc/portage/
 COPY files/etc/portage/repos.conf/*.conf /etc/portage/repos.conf/
 COPY files/portage-local-repo/layout.conf /usr/local/portage/metadata/
 COPY files/portage-local-repo/repo_name /usr/local/portage/profiles/
+# FIXME: this may not work correctly when re-run on unmodified base image
+# due to the way caching works in Docker.
 RUN [ "emaint", "sync", "-a" ]
 
 # If it is about anything in the base image, we are not interested
