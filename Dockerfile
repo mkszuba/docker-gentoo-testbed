@@ -20,10 +20,6 @@ COPY files/portage-local-repo/repo_name /usr/local/portage/profiles/
 # due to the way caching works in Docker.
 RUN [ "emaint", "sync", "-a" ]
 
-# As of January 2018, gentoo/stage3-amd64-hardened still does not use
-# the 17.0/hardened profile
-RUN [ "eselect", "profile", "set", "default/linux/amd64/17.0/hardened" ]
-
 # If it is about anything in the base image, we are not interested
 RUN [ "eselect", "news", "read", "--quiet", "all" ]
 RUN [ "eselect", "news", "purge" ]
