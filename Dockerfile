@@ -20,6 +20,17 @@ COPY files/portage-local-repo/repo_name /usr/local/portage/profiles/
 # due to the way caching works in Docker.
 RUN [ "emaint", "sync", "-a" ]
 
+# As of end of May 2018, gentoo/stage3-amd64-hardened uses the stable
+# profile 17.0/hardened so we need to manually go through all the steps
+# required to upgrade to still-experimental 17.1
+RUN [ "emerge", "-1", "app-portage/unsymlink-lib" ]
+RUN [ "unsymlink-lib", "--analyze" ]
+RUN [ "unsymlink-lib", "--migrate" ]
+RUN [ "unsymlink-lib", "--finish" ]
+RUN [ "eselect", "profile", "set", "--force", "default/linux/amd64/17.1/hardened" ]
+RUN [ "emerge", "-1v", "/usr/lib/gcc", "/lib32", "/usr/lib32" ]
+RUN [ "rm", "-f", "/lib32", "/usr/lib32" ]
+
 # If it is about anything in the base image, we are not interested
 RUN [ "eselect", "news", "read", "--quiet", "all" ]
 RUN [ "eselect", "news", "purge" ]
