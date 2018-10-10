@@ -31,6 +31,8 @@ RUN [ "emerge", "@preserved-rebuild" ]
 RUN [ "emerge", "--depclean" ]
 
 RUN [ "emerge", "app-editors/vim", "app-portage/eix", "app-portage/gentoolkit" ]
+RUN [ "mkdir", "-p", "-m", "0775", "/var/cache/eix" ]
+RUN [ "chown", "portage:portage", "/var/cache/eix" ]
 RUN [ "eix-update" ]
 
 RUN [ "rm", "-rf", "/usr/portage/distfiles/*" ]
