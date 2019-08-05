@@ -35,6 +35,6 @@ RUN [ "mkdir", "-p", "-m", "0775", "/var/cache/eix" ]
 RUN [ "chown", "portage:portage", "/var/cache/eix" ]
 RUN [ "eix-update" ]
 
-RUN [ "rm", "-rf", "/usr/portage/distfiles/*" ]
+RUN [ "rm", "-rf", "/var/cache/distfiles/*" ]
 
 CMD [ "/bin/bash" ]
