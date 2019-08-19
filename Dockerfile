@@ -10,12 +10,12 @@ RUN [ "mkdir", "-p", "/etc/portage/package.keywords" ]
 COPY files/etc/portage/make.conf /etc/portage/
 
 # Initialise the Portage tree
-# We will use subdirectories of /usr/local/portage to inject tested ebuilds
+# We will use subdirectories of /var/db/repos/local to inject tested ebuilds
 # into the container
 COPY files/etc/portage/env/*.conf /etc/portage/env/
 COPY files/etc/portage/repos.conf/*.conf /etc/portage/repos.conf/
-COPY files/portage-local-repo/layout.conf /usr/local/portage/metadata/
-COPY files/portage-local-repo/repo_name /usr/local/portage/profiles/
+COPY files/portage-local-repo/layout.conf /var/db/repos/local/metadata/
+COPY files/portage-local-repo/repo_name /var/db/repos/local/profiles/
 # FIXME: this may not work correctly when re-run on unmodified base image
 # due to the way caching works in Docker.
 RUN [ "emaint", "sync", "-a" ]
