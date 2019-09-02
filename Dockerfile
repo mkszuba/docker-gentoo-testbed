@@ -16,6 +16,10 @@ COPY files/etc/portage/env/*.conf /etc/portage/env/
 COPY files/etc/portage/repos.conf/*.conf /etc/portage/repos.conf/
 COPY files/portage-local-repo/layout.conf /var/db/repos/local/metadata/
 COPY files/portage-local-repo/repo_name /var/db/repos/local/profiles/
+
+# Make sure permissions on all copied files are sane
+RUN [ "chmod", "644", "/etc/portage/make.conf", "/etc/portage/env/*.conf", "/etc/portage/repos.conf/*.conf", "/var/db/repos/local/metadata/layout.conf", "/var/db/repos/local/profiles/repo_name" ]
+
 # FIXME: this may not work correctly when re-run on unmodified base image
 # due to the way caching works in Docker.
 RUN [ "emaint", "sync", "-a" ]
