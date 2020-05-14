@@ -1,7 +1,7 @@
 all: testbed
 
 testbed: upstream
-	docker build -t mkszuba/gentoo-testbed .
+	docker build --network=host -t mkszuba/gentoo-testbed .
 	docker push mkszuba/gentoo-testbed
 
 upstream:
