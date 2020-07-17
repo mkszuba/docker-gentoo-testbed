@@ -8,6 +8,9 @@ RUN [ "mkdir", "-p", "/etc/portage/package.accept_keywords" ]
 # For consistency with other package.* we have got
 RUN [ "mkdir", "-p", "/etc/portage/package.env" ]
 
+# In case we need to override package.mask/use.mask, set package.provided etc.
+RUN [ "mkdir", "-p", "/etc/portage/profile" ]
+
 # This make.conf enables various non-default features required for
 # ebuild stabilisation, and also disables default USE="bindist"
 COPY files/etc/portage/make.conf /etc/portage/
