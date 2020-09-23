@@ -44,6 +44,8 @@ RUN [ "mkdir", "-p", "-m", "0775", "/var/cache/eix" ]
 RUN [ "chown", "portage:portage", "/var/cache/eix" ]
 RUN [ "eix-update" ]
 
+COPY files/puremerge.py /usr/local/bin/puremerge
+
 RUN [ "rm", "-rf", "/var/cache/distfiles/*" ]
 
 CMD [ "/bin/bash" ]
