@@ -39,7 +39,7 @@ RUN [ "emerge", "-uUD", "--with-bdeps=y", "@world" ]
 RUN [ "emerge", "@preserved-rebuild" ]
 RUN [ "emerge", "--depclean" ]
 
-RUN [ "emerge", "app-editors/vim", "app-portage/eix", "app-portage/gentoolkit" ]
+RUN [ "emerge", "app-editors/vim", "app-portage/eix", "app-portage/gentoolkit", "dev-util/pkgcheck", "dev-vcs/git" ]
 RUN [ "mkdir", "-p", "-m", "0775", "/var/cache/eix" ]
 RUN [ "chown", "portage:portage", "/var/cache/eix" ]
 RUN [ "eix-update" ]
